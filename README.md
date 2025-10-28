@@ -56,3 +56,14 @@ INSERT INTO online_sales (order_id, order_date, amount, product_id) VALUES
 (6, '2024-03-18', 220.00, 102),
 (7, '2024-04-01', 500.00, 103),
 (8, '2024-04-20', 350.00, 104);
+
+### Step 3: Analyze Monthly Trends
+```sql
+SELECT 
+    EXTRACT(YEAR FROM order_date) AS year,
+    EXTRACT(MONTH FROM order_date) AS month,
+    SUM(amount) AS total_revenue,
+    COUNT(DISTINCT order_id) AS total_orders
+FROM online_sales
+GROUP BY year, month
+ORDER BY year, month;
